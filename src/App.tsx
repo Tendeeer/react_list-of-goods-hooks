@@ -24,9 +24,12 @@ enum SortType {
   SORT_LENGTH = 'SORT_LENGTH',
 }
 
-function getPrepearedGoods(goods: string[], options: { sortField: SortField; reverseField: boolean }) {
+function getPrepearedGoods(
+  goods: string[],
+  options: { sortField: SortField; reverseField: boolean },
+) {
   const { sortField, reverseField } = options;
-  let preparedGoods = [...goods];
+  const preparedGoods = [...goods];
 
   if (sortField === SortType.SORT_ALPHABETICALLY) {
     preparedGoods.sort((a, b) => a.localeCompare(b));
@@ -44,7 +47,7 @@ function getPrepearedGoods(goods: string[], options: { sortField: SortField; rev
 }
 
 export const App: React.FC = () => {
- const [sortField, setSortField] = useState<SortField>('');
+  const [sortField, setSortField] = useState<SortField>('');
   const [reverseField, setReverseField] = useState<boolean>(false);
   const visibleGoods = getPrepearedGoods(goodsFromServer, {
     sortField,
@@ -88,7 +91,7 @@ export const App: React.FC = () => {
             className="button is-danger is-light"
             onClick={() => {
               setSortField('');
-              setReverseField('');
+              setReverseField(false);
             }}
           >
             Reset
